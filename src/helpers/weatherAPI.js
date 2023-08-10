@@ -13,6 +13,9 @@ export const getWeatherByCity = async (cityURL) => {
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`);
   const data = await response.json();
   return {
+    name: data.location.name,
+    country: data.location.country,
+    url: cityURL,
     temp: data.current.temp_c,
     condition: data.current.condition.text,
     icon: data.current.condition.icon,
