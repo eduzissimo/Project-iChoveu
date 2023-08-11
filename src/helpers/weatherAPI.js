@@ -21,3 +21,11 @@ export const getWeatherByCity = async (cityURL) => {
     icon: data.current.condition.icon,
   };
 };
+
+export const getForecastByCity = async (cityURL) => {
+  const weekDays = 7;
+  const URL_API = `http://api.weatherapi.com/v1/forecast.json?lang=pt&key=${TOKEN}&q=${cityURL}&days=${weekDays}`;
+  const response = await fetch(URL_API);
+  const data = await response.json();
+  return data.forecast.forecastday;
+};
