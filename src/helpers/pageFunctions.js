@@ -65,24 +65,24 @@ export function showForecast(forecastList) {
   const forecastContainer = document.getElementById('forecast-container');
   const weekdayContainer = document.getElementById('weekdays');
   clearChildrenById('weekdays');
-  forecastList.forEach((forecast) => {
+  forecastList.forEach(async (forecast) => {
     const {
       date,
       day: {
-        maxtemp_c,
-        mintemp_c,
+        maxtemp_c: maxTempC,
+        mintemp_c: minTempC,
         condition: { text: condition, icon },
       },
     } = forecast;
 
-    const forecastNew = {
+    const forecastData = {
       date,
-      maxTemp: maxtemp_c,
-      minTemp: mintemp_c,
+      maxTemp: maxTempC,
+      minTemp: minTempC,
       condition,
       icon,
     };
-    const weekdayElement = createForecast(forecastNew);
+    const weekdayElement = createForecast(forecastData);
     weekdayContainer.appendChild(weekdayElement);
   });
 
